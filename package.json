@@ -16,6 +16,7 @@
     "express-session": "^1.14.1",
     "express-validator": "*",
     "jade": "~1.11.0",
+    "moment" : "*",
     "mongodb": "*",
     "mongoose": "*",
     "morgan": "~1.7.0",

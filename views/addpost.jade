@@ -7,13 +7,13 @@ head
     meta(name='author', content='')
     title Clean Blog
     // Bootstrap Core CSS
-    link(href='vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(href='../vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
     // Theme CSS
-    link(href='css/clean-blog.min.css', rel='stylesheet')
+    link(href='../css/clean-blog.min.css', rel='stylesheet')
     // Page CSS
-    link(href='stylesheets/style.css', rel='stylesheet')
+    link(href='../stylesheets/style.css', rel='stylesheet')
     // Custom Fonts
-    link(href='vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='../vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
     link(href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic', rel='stylesheet', type='text/css')
     link(href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800', rel='stylesheet', type='text/css')
     // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
@@ -22,9 +22,9 @@ head
         script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
         script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
     // Bootstrap js
-    script(src='vendor/jquery/jquery.min.js')
+    script(src='../vendor/jquery/jquery.min.js')
     // Bootstrap js
-    script(src='vendor/bootstrap/js/bootstrap.min.js')
+    script(src='../vendor/bootstrap/js/bootstrap.min.js')
 
     //include tinyMCE js
     script(src='//cdn.tinymce.com/4/tinymce.min.js')
@@ -46,13 +46,13 @@ body
                     li
                         a(href='/about') About
                     li
-                        a(href='/addpost') Add Post
+                        a(href='/post/add') Add Post
                     li
                         a(href='/contact') Contact
             // /.navbar-collapse
             // /.container
 
-    header.intro-header(style="background-image: url('img/about-bg.jpg')")
+    header.intro-header(style="background-image: url('../img/about-bg.jpg')")
         .container
             .row
                 .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
@@ -62,21 +62,21 @@ body
                         span.subheading This is what I do.
     // Main Content
     .container
-        .row
-            .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
-                form#contactForm(name='sentMessage', novalidate='')
+        form#contactForm(method='post', action='/post/add', enctype='multipart/formdata')
+            .row
+                .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
                     .row.control-group
                         .form-group.col-xs-12.floating-label-form-group.controls
                             label Title
-                            input#name.form-control(type='text', placeholder='Title', required='', data-validation-required-message='Please enter your name.')
+                            input#name.form-control(name='title', type='text', placeholder='Title', required='', data-validation-required-message='Please enter a title.')
                             p.help-block.text-danger
-        .row
-            .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
-                textarea Easy (and free!) You should check out our premium features.
-        .row
-            .form-group.col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.col-xs-12.post-buttons
-                .post-button-padding.button.btn.btn-default(type='submit') Save as draft
-                button.btn.btn-default(type='submit') Publish
+            .row
+                .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.post-text-area
+                    textarea.form-control(name='body') Write something awesome.
+            .row
+                .form-group.col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.col-xs-12.post-buttons
+                    .post-button-padding.button.btn.btn-default(type='submit') Save as draft
+                    button.btn.btn-default(type='submit', value='submit') Publish
     hr
     footer
         .container
@@ -103,12 +103,17 @@ body
 script.
     tinymce.init({
     selector: 'textarea',
+    automatic_uploads: false,
     height: 500,
     plugins: [
     'advlist autolink lists link image charmap print preview anchor',
     'searchreplace visualblocks code fullscreen',
     'insertdatetime media table contextmenu paste code'
     ],
+    file_browser_callback: function(field_name, url, type, win) {
+    win.document.getElementById(field_name).value = 'my browser value';
+    },
+    file_browser_callback_types: 'file image media',
     toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
     content_css: [
     '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',

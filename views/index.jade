@@ -1,6 +1,19 @@
 extends layout
 
 block content
-    h1= message
-    h2= error.status
-    pre #{error.stack}
+    .container
+        .row
+            .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                if posts
+                    each post, i in posts
+                        .post-preview
+                            a(href='post.html')
+                                h2.post-title
+                                    =post.title
+                            p.post-meta Posted by #{post.author} on #{moment(post.date).format('LLLL')}
+                        hr
+                // Pager
+                ul.pager
+                    li.next
+                        a(href='#') Older Posts &rarr;
+a(href='#') Older Posts &rarr;

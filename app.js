@@ -20,9 +20,11 @@ var db = mongoose.connection;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var post = require('./routes/post');
 
 var app = express();
 
+app.locals.moment = require('moment');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -70,6 +72,7 @@ app.use(require('connect-flash')());
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/post', post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
