@@ -1,5 +1,6 @@
 tinymce.init({
-    selector: 'textarea',
+    mode: "specific_textareas",
+    editor_selector: "tinymce",
     automatic_uploads: false,
     height: 500,
     plugins: [

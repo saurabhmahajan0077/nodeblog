@@ -10,16 +10,26 @@ router.get('/add', function(req, res, next) {
 });
 
 router.get('/show/:id', function(req, res, next) {
-    res.render('addpost');
+    console.log(req.params.id);
+    post.findById(req.params.id, function(err, post) {
+        if (err)
+            throw err;
+        res.render('viewpost', {
+            pageHeading: post.title,
+            post: post
+        });
+    })
+
 });
 
 router.post('/add', function(req, res, next) {
 
     var title = req.body.title;
     var body = req.body.body;
+    var category = req.body.category;
     var newPost = new post({
         title: title,
-        category: '',
+        category: category,
         author: 'Saurabh Mahajan',
         body: body
     });

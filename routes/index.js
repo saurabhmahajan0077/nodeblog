@@ -5,10 +5,9 @@ var Post = require('../models/post');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     Post.getPosts(function(err, posts) {
-        console.log(posts);
         res.render('index', {
-            pageHeading: 'Clean Blog',
-            pageSubHeading: 'A minimal blog',
+            pageHeading: 'Code Limbo',
+            pageSubHeading: 'code.life',
             posts: posts
         });
     });
