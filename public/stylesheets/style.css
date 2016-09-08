@@ -9,3 +9,25 @@
 .post-text-area{
   padding-top: 5%;
 }
+#particles-js{
+  width: 100%;
+  height: 100%;
+  background-color: #1c1b25;
+  /*background-image: url('');*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+}
+.title-background{
+  position: relative;
+  width: 100%;
+}
+canvas.particles-js-canvas-el{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+header.intro-header{
+      height: 500px;
+}

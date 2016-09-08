@@ -34,3 +34,8 @@ module.exports.getPosts = function(callback) {
         callback(err, posts);
     });
 };
+
+module.exports.createPost = function(post, callback) {
+    post.date = Date.now();
+    post.save(callback);
+};
