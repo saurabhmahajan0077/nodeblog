@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 
 mongoose.connect('mongodb://saurabh:saurabh@ds019926.mlab.com:19926/blogger-node');
 console.log();
@@ -22,17 +23,24 @@ var PostSchema = new mongoose.Schema({
         type: String
     }
 });
+PostSchema.plugin(mongoosePaginate);
 
 var Post = module.exports = mongoose.model('Post', PostSchema);
 
-module.exports.getPosts = function(callback) {
-    Post.find({}, null, {
-        sort: {
-            date: -1
-        }
+module.exports.getPosts = function(page, limit, callback) {
+    Post.paginate({}, {
+        page: page,
+        limit: limit
     }, function(err, posts) {
         callback(err, posts);
     });
+    // Post.find({}, null, {
+    //     sort: {
+    //         date: -1
+    //     }
+    // }, function(err, posts) {
+    //     callback(err, posts);
+    // });
 };
 
 module.exports.getPostById = function(id, callback) {

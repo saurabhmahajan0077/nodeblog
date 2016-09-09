@@ -16,6 +16,7 @@ var flash = require('connect-flash');
 var bcrypt = require('bcryptjs');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var paginate = require('express-paginate');
 var db = mongoose.connection;
 
 var routes = require('./routes/index');
@@ -38,6 +39,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static('public'));
+app.use(paginate.middleware(3, 10));
 
 //handle sessions
 app.use(session({

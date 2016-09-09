@@ -13,7 +13,12 @@ block content
                             p.post-meta Posted by #{post.author} on #{moment(post.date).format('LLLL')}
                         hr
                 // Pager
+                if paginate.hasPreviousPages
                 ul.pager
                     li.next
-                        a(href='#') Older Posts &rarr;
+                        a(href=paginate.href()).next &larr; Newer Posts
+                if paginate.hasNextPages(pageCount)
+                ul.pager
+                    li.next
+                        a(href=paginate.href()).next Older Posts &rarr;
     hr

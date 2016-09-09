@@ -1,14 +1,17 @@
 var express = require('express');
+var paginate = require('express-paginate');
 var router = express.Router();
 var Post = require('../models/post');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    Post.getPosts(function(err, posts) {
+    console.log(req.query.page);
+    Post.getPosts(req.query.page, req.query.limit, function(err, posts) {
         res.render('index', {
             pageHeading: 'Code Limbo',
             pageSubHeading: 'code.life',
-            posts: posts
+            posts: posts.docs,
+            pageCount: posts.page
         });
     });
 });
