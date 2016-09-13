@@ -6,3 +6,41 @@ block content
             .row
                 .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
                     !{post.body}
+            hr
+        .container
+            .row
+                .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                    h4 !{comments.length} Comments
+                    hr
+            .row
+                .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                    each comment in comments
+                        h5 !{comment.name}
+                        h6.post-meta.comment-date #{moment(comment.date).format('lll')}
+                        p !{comment.body}
+                        hr
+
+    .container
+        .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.well
+            h3.comment-heading Leave a reply
+            form(method='post', action='/post/addcomment/#{post.id}', enctype='multipart/formdata')
+                .row.control-group
+                    .form-group.col-xs-12.floating-label-form-group.controls
+                        label Name
+                        input#name.form-control(name='name', type='text', placeholder='Name', required='', data-validation-required-message='Please enter your name.')
+                        p.help-block.text-danger
+                .row.control-group
+                    .form-group.col-xs-12.floating-label-form-group.controls
+                        label Email Address
+                        input#email.form-control(name='email', type='email', placeholder='Email Address', required='', data-validation-required-message='Please enter your email address.')
+                        p.help-block.text-danger
+                .row.control-group
+                    .form-group.col-xs-12.floating-label-form-group.controls
+                        label Comment
+                        textarea#message.form-control(name='body', rows='3', placeholder='Comment', required='', data-validation-required-message='Please enter a comment.')
+                        p.help-block.text-danger
+                br
+                #success
+                .row
+                    .form-group.col-xs-12
+                        button.btn.btn-default(type='submit') Submit Comment

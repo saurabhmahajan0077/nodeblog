@@ -16,7 +16,7 @@
   /*background-image: url('');*/
   background-size: cover;
   background-repeat: no-repeat;
-  
+
 }
 .title-background{
   position: relative;
@@ -30,4 +30,12 @@ canvas.particles-js-canvas-el{
 }
 header.intro-header{
       height: 500px;
+}
+
+.comment-heading{
+  padding-bottom: 2%;
+}
+
+.comment-date{
+  font-weight: 500;
 }

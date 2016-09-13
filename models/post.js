@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
+var Comment = require('../models/comment').schema;
 
 mongoose.connect('mongodb://saurabh:saurabh@ds019926.mlab.com:19926/blogger-node');
 console.log();
@@ -21,11 +22,13 @@ var PostSchema = new mongoose.Schema({
     },
     body: {
         type: String
-    }
+    },
+    comments: [Comment]
 });
 PostSchema.plugin(mongoosePaginate);
 
 var Post = module.exports = mongoose.model('Post', PostSchema);
+
 
 module.exports.getPosts = function(page, limit, callback) {
     Post.paginate({}, {
@@ -34,13 +37,6 @@ module.exports.getPosts = function(page, limit, callback) {
     }, function(err, posts) {
         callback(err, posts);
     });
-    // Post.find({}, null, {
-    //     sort: {
-    //         date: -1
-    //     }
-    // }, function(err, posts) {
-    //     callback(err, posts);
-    // });
 };
 
 module.exports.getPostById = function(id, callback) {
@@ -49,5 +45,12 @@ module.exports.getPostById = function(id, callback) {
 
 module.exports.createPost = function(post, callback) {
     post.date = Date.now();
+    post.save(callback);
+};
+
+module.exports.addComment = function(post, comment, callback) {
+    comment.date = Date.now();
+    console.log("comment--", comment)
+    post.comments.push(comment);
     post.save(callback);
 };

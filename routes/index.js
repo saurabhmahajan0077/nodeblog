@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
             pageHeading: 'Code Limbo',
             pageSubHeading: 'code.life',
             posts: posts.docs,
-            pageCount: posts.page
+            pageCount: posts.pages
         });
     });
 });

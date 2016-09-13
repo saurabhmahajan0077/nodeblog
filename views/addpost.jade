@@ -1,21 +1,21 @@
 extends layout
 
 block content
-	// Main Content
-	.container
-		form(method='post', action='/post/add', enctype='multipart/formdata')
-			.row
-				.col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
-					.row.control-group
-						.form-group.col-xs-12.floating-label-form-group.controls
-							label Title
-							input#name.form-control(name='title', type='text', placeholder='Title', required='', data-validation-required-message='Please enter a title.')
-							p.help-block.text-danger
-			.row
-				.col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.post-text-area
-					textarea.form-control.tinymce(name='body') Write something awesome.
-			.row
-				.form-group.col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.col-xs-12.post-buttons
-					.post-button-padding.button.btn.btn-default(type='submit') Save as draft
-					button.btn.btn-default(type='submit', value='submit') Publish
-	hr
+    // Main Content
+    .container
+        form(method='post', action='/post/add', enctype='multipart/formdata')
+            .row
+                .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                    .row.control-group
+                        .form-group.col-xs-12.floating-label-form-group.controls
+                            label Title
+                            input#name.form-control(name='title', type='text', placeholder='Title', required='', data-validation-required-message='Please enter a title.')
+                            p.help-block.text-danger
+            .row
+                .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.post-text-area
+                    textarea.form-control.tinymce(name='body') Write something awesome.
+            .row
+                .form-group.col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.col-xs-12.post-buttons
+                    .post-button-padding.button.btn.btn-default(type='submit') Save as draft
+                    button.btn.btn-default(type='submit', value='submit') Publish
+    hr
