@@ -13,12 +13,12 @@
     "debug": "~2.2.0",
     "express": "~4.13.4",
     "express-messages": "*",
-    "express-paginate":"*",
-    "mongoose-paginate":"*",
+    "express-paginate": "*",
+    "mongoose-paginate": "*",
     "express-session": "^1.14.1",
     "express-validator": "*",
     "jade": "~1.11.0",
-    "moment" : "*",
+    "moment": "*",
     "mongodb": "*",
     "mongoose": "*",
     "morgan": "~1.7.0",
@@ -27,5 +27,12 @@
     "passport-http": "*",
     "passport-local": "*",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jshint": "^2.0.1",
+    "jshint": "^2.9.3",
+    "jshint-stylish": "^2.2.1"
   }
 }

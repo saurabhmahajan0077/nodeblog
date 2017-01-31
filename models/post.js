@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate');
+var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 var Comment = require('../models/comment').schema;
 
 mongoose.connect('mongodb://saurabh:saurabh@ds019926.mlab.com:19926/blogger-node');
@@ -50,7 +50,6 @@ module.exports.createPost = function(post, callback) {
 
 module.exports.addComment = function(post, comment, callback) {
     comment.date = Date.now();
-    console.log("comment--", comment)
     post.comments.push(comment);
     post.save(callback);
 };

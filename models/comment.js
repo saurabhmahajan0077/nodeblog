@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate');
+var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var db = mongoose.connection;
 

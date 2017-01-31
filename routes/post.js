@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var post = require('../models/post');
-var comment = require('../models/comment');
+var Post = require('../models/post');
+var Comment = require('../models/comment');
 
 /* GET add post page. */
 router.get('/add', function(req, res, next) {
@@ -12,13 +12,14 @@ router.get('/add', function(req, res, next) {
 });
 
 router.get('/show/:id', function(req, res, next) {
-    post.findById(req.params.id, function(err, post) {
-        if (err)
+    Post.findById(req.params.id, function(err, resultPost) {
+        if (err) {
             throw err;
+        }
         res.render('viewpost', {
-            pageHeading: post.title,
-            post: post,
-            comments: post.comments
+            pageHeading: resultPost.title,
+            post: resultPost,
+            comments: resultPost.comments
         });
     });
 });
@@ -27,16 +28,17 @@ router.post('/add', function(req, res, next) {
     var title = req.body.title;
     var body = req.body.body;
     var category = req.body.category;
-    var newPost = new post({
+    var newPost = new Post({
         title: title,
         category: category,
         author: 'Saurabh Mahajan',
         body: body
     });
 
-    post.createPost(newPost, function(err, post) {
-        if (err)
+    Post.createPost(newPost, function(err, post) {
+        if (err) {
             throw err;
+        }
         res.redirect('/');
     });
 
@@ -47,19 +49,21 @@ router.post('/addcomment/:id', function(req, res, next) {
     var name = req.body.name;
     var email = req.body.email;
     var body = req.body.body;
-    var newComment = new comment({
+    var newComment = new Comment({
         name: name,
         email: email,
         body: body
     });
     console.log(postId);
-    post.findById(req.params.id, function(err, result_post) {
-        if (err)
+    Post.findById(req.params.id, function(err, resultPost) {
+        if (err) {
             throw err;
-        console.log(result_post);
-        post.addComment(result_post, newComment, function(err, result) {
-            if (err)
+        }
+        console.log(resultPost);
+        Post.addComment(resultPost, newComment, function(err, result) {
+            if (err) {
                 throw err;
+            }
             res.redirect('/post/show/' + req.params.id);
         });
     });
